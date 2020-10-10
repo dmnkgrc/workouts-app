@@ -29,6 +29,12 @@
     "workouts-app-e2e": {
       "tags": [],
       "implicitDependencies": ["workouts-app"]
+    },
+    "common": {
+      "tags": []
+    },
+    "api": {
+      "tags": []
     }
   }
 }

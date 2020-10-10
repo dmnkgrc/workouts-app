@@ -1,0 +1,39 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Workout {
+  id: Int!
+  name: String!
+  description: String!
+  startDate: String!
+  image: String!
+  category: WorkoutCategory!
+  createdAt: String!
+  updatedAt: String!
+  extra: String!
+}
+
+"""Workout category scalar type"""
+scalar WorkoutCategory
+
+type Workouts {
+  workouts: [Workout!]!
+  total: Float!
+  nextPage: Float
+  previousPage: Float
+  totalPages: Float!
+  page: Float!
+}
+
+type Query {
+  getWorkout(id: Int!): Workout!
+  getWorkouts(variables: WorkoutsArgs): Workouts!
+}
+
+input WorkoutsArgs {
+  limit: Float
+  page: Float
+  startMonth: String
+  categories: [WorkoutCategory!]
+}
