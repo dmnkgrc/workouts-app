@@ -22,7 +22,7 @@ A small summary of the folder structure:
 yarn install
 ```
 
-- Start dev database (make sure port 5432 is  available). The code is available in `scripts/start-db.sh`
+- This step requires that you have [docker](https://docs.docker.com/get-docker/) installed. Start dev database (make sure port 5432 is  available). The code is available in `scripts/start-db.sh`
 
 ```bash
 yarn start:dev:db
