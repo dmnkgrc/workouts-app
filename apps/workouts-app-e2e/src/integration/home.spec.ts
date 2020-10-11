@@ -2,7 +2,7 @@
  * Ideally all this E2E tests should run against staging or mock data
  * but for the purpose of this task this is fine
  */
-describe('workouts-app', () => {
+describe('Home Page', () => {
   beforeEach(() => cy.visit('/'));
 
   it('has the global header', () => {

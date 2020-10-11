@@ -42,9 +42,8 @@ const WorkoutPage = () => {
         <BackLink text="Back to Workouts" to="/" />
       </Box>
       <Heading data-test-id="workout-page-title">{workout.name}</Heading>
-      <Box py={2}>
+      <Box py={2} data-test-id="workout-page-image">
         <ImageWithLoading
-          data-test-id="workout-page-image"
           loaderHeight={64}
           src={`${workout.image}?q=${workout.id}`}
           alt={workout.name}
