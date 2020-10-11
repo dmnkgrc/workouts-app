@@ -1,90 +1,101 @@
-# WorkoutsApp
+# Workouts APP
 
-This project was generated using [Nx](https://nx.dev).
+This project uses [NX](https://nx.dev). The main benefit is that it allows to easily share code an maintain multiple applications in a monorepo. For this task it is a
+good idea given that it simplifies having the NestJS backend and the React frontend on the same repo.
+It also uses [Chakra UI](https://chakra-ui.com/) as a component library. It is a good idea to use Chakra for this application, because it allows to build accessible apps fast.
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+A small summary of the folder structure:
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+- apps/workouts-app-e2e: contains the E2E tests for the frontend. I prefered to use e2e tests for this application, given the size of the task and the fact that there are not too many flows to test. Nevertheless, there are unit tests for the backend logic.
 
-## Adding capabilities to your workspace
+- apps/api: contains the NestJS application
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+- apps/api/src/column-pollution.txt: the file with the random content to pollute each row of the workouts table
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+- apps/workouts-app: contains the React frontend application code
 
-Below are our core plugins:
+## Getting started
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+- Install dependencies
 
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
+```bash
+yarn install
+```
 
-## Generate an application
+- Start dev database (make sure port 5432 is  available). The code is available in `scripts/start-db.sh`
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+```bash
+yarn start:dev:db
+```
 
-> You can use any of the plugins above to generate applications as well.
+- Seed the database
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+```base
+yarn seed:run
+```
 
-## Generate a library
+## Running the project
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+You can run both the API and the frontend with
 
-> You can also use any of the plugins above to generate libraries as well.
+```bash
+yarn nx run-many --target=serve --projects=workouts-app,api --parallel --maxParallel=2
+```
 
-Libraries are sharable across libraries and applications. They can be imported from `@workouts-app/mylib`.
+or separately using
 
-## Development server
+```bash
+# start the API
+yarn start api
+# start the frontend
+yarn start
+```
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+The API runs in port `4200` by default and the frontend in port `3000`
 
-## Code scaffolding
+## Testing
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+### API unit tests
 
-## Build
+To run unit tests for the API you need to run:
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```bash
+yarn test api
+```
 
-## Running unit tests
+### E2E tests
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+To run the E2E tests for the frontend you need to run
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+```bash
+yarn e2e workouts-app-e2e
+```
 
-## Running end-to-end tests
+This will automatically run the frontend and the E2E, by defaults it runts them once and reports the results in the terminal. If you want to keep cypress running and wait for changes, you can run:
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+```bash
+yarn e2e workouts-app-e2e --watch
+```
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+## Building
 
-## Understand your workspace
+You can build both the API and the frontend with
 
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
+```bash
+yarn nx run-many --target=build --projects=workouts-app,api --parallel --maxParallel=2
+```
 
-## Further help
+or separately using
 
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+```bash
+# build the API
+yarn build api
+# build the frontend
+yarn build
+```
 
-## ☁ Nx Cloud
+The outputs will be available in:
 
-### Computation Memoization in the Cloud
+- `dist/apps/api`
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+- `dist/apps/workouts-app`

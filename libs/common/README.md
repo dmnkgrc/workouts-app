@@ -1,3 +1,5 @@
-# common
+# Common Library
 
-This library was generated with [Nx](https://nx.dev).
+This library contains shared elements by multiple apps. It currently contains:
+
+- models: contains shared models by multiple apps

@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+// Gymondo logo components
 export const Logo = ({ color = 'currentColor' }: { color?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 85 22">
     <g fill={color} fillRule="evenodd">

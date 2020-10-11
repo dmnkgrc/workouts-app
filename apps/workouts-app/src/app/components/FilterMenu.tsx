@@ -14,12 +14,17 @@ interface FilterMenuOption {
 }
 
 export interface FilterMenuProps {
+  // options for the menu
   options: FilterMenuOption[];
+  // action to perform on click
   onClick: (value: string) => void;
+  // current elements selected
   selected?: string[] | string;
+  // text to display on the button
   text: string;
 }
 
+// validates if an element is selected
 const isSelected = (value: string, selected?: string | string[]) => {
   if (Array.isArray(selected)) {
     return selected.includes(value);
@@ -27,6 +32,7 @@ const isSelected = (value: string, selected?: string | string[]) => {
   return value === selected;
 };
 
+// styles to add when an item is selected
 const selectedProps = {
   backgroundColor: 'brand.500',
   color: 'white',

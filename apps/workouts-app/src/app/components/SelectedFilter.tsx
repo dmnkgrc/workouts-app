@@ -2,8 +2,11 @@ import * as React from 'react';
 import { Flex, Text, CloseButton } from '@chakra-ui/core';
 
 interface SelectedFilterProps {
+  // value of the filter
   value?: string;
+  // text to display for the filter
   text: string;
+  // action to perform on clicking the close button
   onClick: (value: string | undefined) => void;
 }
 

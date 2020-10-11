@@ -4,18 +4,27 @@ import { ChevronLeft, ChevronRight } from 'react-feather';
 import { LIMIT } from '../config/contstants';
 
 interface PaginationProps {
+  // action to perform when page changes
   onChange: (page: number) => void;
+  // current page
   page: number;
+  // total number of elements
   total: number;
+  // number of elements per page
   limit?: number;
+  // total number of pages
   totalPages: number;
+  // number of elements for the boundary
   boundaryCount?: number;
+  // number of siblings
   siblingCount?: number;
+  // controls weather the "next" button should be hidden
   hideNextButton?: boolean;
+  // controls weather the "previous" button should be hidden
   hidePrevButton?: boolean;
 }
 
-// Based on Matrial UI Pagination component
+// Based on the Material UI Pagination component
 export const Pagination = ({
   onChange,
   page,
@@ -32,11 +41,13 @@ export const Pagination = ({
     return null;
   }
 
+  // Generates an array with the number from start to end
   const range = (start: number, end: number): number[] => {
     const length = end - start + 1;
     return Array.from({ length }, (_, i) => start + i);
   };
 
+  // Generate the arrays of numbers for the buttons
   const startPages = range(1, Math.min(boundaryCount, totalPages));
   const endPages = range(
     Math.max(totalPages - boundaryCount + 1, boundaryCount + 1),
@@ -82,6 +93,7 @@ export const Pagination = ({
   // List of items to render: ['previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next']
   const itemList = [
     ...(hidePrevButton ? [] : ['previous']),
+    // Numbers to show at the start
     ...startPages,
 
     // Start ellipsis
@@ -93,6 +105,7 @@ export const Pagination = ({
     // End ellipsis
     ...endEllipsis,
 
+    // Numbers to show at the end
     ...endPages,
     ...(hideNextButton ? [] : ['next']),
   ];

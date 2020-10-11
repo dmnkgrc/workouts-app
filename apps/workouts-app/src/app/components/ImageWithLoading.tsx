@@ -5,6 +5,8 @@ interface ImageWithLoadingProps extends ImageProps {
   loaderHeight?: FlexProps['height'];
 }
 
+// Component that shows a spinner until an image has been loaded
+// to improve the UX
 export const ImageWithLoading = ({
   loaderHeight = '100%',
   ...props

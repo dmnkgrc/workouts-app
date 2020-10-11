@@ -1,17 +1,13 @@
 import * as React from 'react';
 import { Box, BoxProps, Flex, Text } from '@chakra-ui/core';
-import styled from '@emotion/styled';
 import { IWorkout } from '@workouts-app/common';
-import { format } from 'date-fns';
 import LazyLoad from 'react-lazyload';
 
-import { Theme } from '../config/theme';
+import styled from '../config/theme';
 import { ImageWithLoading } from './ImageWithLoading';
+import { formatDate } from '../utils/date';
 
-interface StyledWorkoutListElementProps extends BoxProps {
-  theme: Theme;
-}
-const StyledWorkoutListElement = styled(Box)<StyledWorkoutListElementProps>(
+const StyledWorkoutListElement = styled(Box)(
   ({ theme }) => `
   background: white;
   border-radius: ${theme.radii.md};
@@ -28,7 +24,9 @@ export const WorkoutListElement = ({
   workout,
   onClick,
 }: {
+  // the workout
   workout: IWorkout;
+  // action to perform on clicking the lement
   onClick: BoxProps['onClick'];
 }) => (
   <StyledWorkoutListElement
@@ -63,7 +61,7 @@ export const WorkoutListElement = ({
         {workout.category}
       </Text>
       <Text color="gray.400" fontWeight="xs">
-        {format(new Date(Number(workout.startDate)), 'dd MMM yyyy')}
+        {formatDate(Number(workout.startDate))}
       </Text>
     </Flex>
     <Box px={2}>

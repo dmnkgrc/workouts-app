@@ -1,13 +1,8 @@
-import styled from '@emotion/styled';
-import { NavLink, NavLinkProps } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-import { Theme } from '../config/theme';
+import styled from '../config/theme';
 
-interface StyledNavLinkProps extends NavLinkProps {
-  theme: Theme;
-}
-
-export const StyledNavLink = styled(NavLink)<StyledNavLinkProps>(
+export const StyledNavLink = styled(NavLink)(
   ({ theme }) => `
   font-weight: 600;
   &:hover,
