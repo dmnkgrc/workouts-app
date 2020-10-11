@@ -26,7 +26,7 @@ interface BackLinkProps extends NavLinkProps {
 }
 
 export const BackLink = ({ text, ...props }: BackLinkProps) => (
-  <StyledBackLink {...props}>
+  <StyledBackLink {...props} data-test-id="back-link">
     <ArrowLeft />
     <Text ml={1}>{text}</Text>
   </StyledBackLink>

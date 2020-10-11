@@ -5,6 +5,16 @@
 describe('workouts-app', () => {
   beforeEach(() => cy.visit('/'));
 
+  it('has the global header', () => {
+    cy.get('nav').should('be.visible');
+
+    cy.get('nav').find('svg').should('be.visible');
+    cy.get('nav')
+      .find('a[href="/"]')
+      .should('be.visible')
+      .should('have.class', 'active');
+  });
+
   it('should be able to filter', () => {
     cy.get('[data-test-id="home-title"]').find('p').should('contain', '(1000)');
     cy.get('[data-test-id="workouts-list-element"]').should('have.length', 20);
@@ -84,6 +94,7 @@ describe('workouts-app', () => {
           'contain.text',
           name,
         );
+        cy.url().should('include', 'http://localhost:4200/workouts/');
       });
   });
 });

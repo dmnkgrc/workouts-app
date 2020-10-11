@@ -68,6 +68,8 @@ yarn test api
 To run the E2E tests for the frontend you need to run
 
 ```bash
+# The API needs to be running for the tests to work
+yarn start api
 yarn e2e workouts-app-e2e
 ```
 

@@ -44,6 +44,7 @@ const WorkoutPage = () => {
       <Heading data-test-id="workout-page-title">{workout.name}</Heading>
       <Box py={2}>
         <ImageWithLoading
+          data-test-id="workout-page-image"
           loaderHeight={64}
           src={`${workout.image}?q=${workout.id}`}
           alt={workout.name}
@@ -51,14 +52,24 @@ const WorkoutPage = () => {
       </Box>
       <Box backgroundColor="white" p={4} borderRadius="md" boxShadow="sm">
         <Flex justifyContent="space-between">
-          <Text fontWeight="600" textTransform="capitalize">
+          <Text
+            fontWeight="600"
+            textTransform="capitalize"
+            data-test-id="workout-page-category"
+          >
             {workout.category}
           </Text>
-          <Text color="gray.400" fontWeight="xs">
+          <Text
+            color="gray.400"
+            fontWeight="xs"
+            data-test-id="workout-page-start-date"
+          >
             {formatDate(Number(workout.startDate))}
           </Text>
         </Flex>
-        <Text>{workout.description}</Text>
+        <Text data-test-id="workout-page-description">
+          {workout.description}
+        </Text>
       </Box>
     </Box>
   );
