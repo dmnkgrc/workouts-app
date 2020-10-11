@@ -2,8 +2,6 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import databaseConfig from './config/database';
 import { join } from 'path';
 import { WorkoutsModule } from './workouts/workouts.module';
@@ -16,7 +14,7 @@ import { WorkoutsModule } from './workouts/workouts.module';
     }),
     WorkoutsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

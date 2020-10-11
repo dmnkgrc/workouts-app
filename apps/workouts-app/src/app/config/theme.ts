@@ -1,4 +1,5 @@
 import { theme as baseTheme } from '@chakra-ui/core';
+import styled, { CreateStyled } from '@emotion/styled';
 
 export const theme = {
   ...baseTheme,
@@ -20,3 +21,4 @@ export const theme = {
 };
 
 export type Theme = typeof theme;
+export default styled as CreateStyled<Theme>;

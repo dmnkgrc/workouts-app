@@ -60,6 +60,7 @@ export const FilterMenu = ({
       _hover={{ borderColor: 'brand.500' }}
       _expanded={{ bg: 'brand.500', color: 'white' }}
       _focus={{ outline: 0, boxShadow: 'outline' }}
+      data-test-id={`filter-menu-${text.toLowerCase().replace(/ /g, '-')}`}
     >
       {text} <ChevronDown />
     </MenuButton>
@@ -80,6 +81,7 @@ export const FilterMenu = ({
                 borderColor: 'brand.500',
                 outline: 'none',
               }}
+              data-test-id="filter-menu-option"
             >
               {label}
             </MenuItemOption>

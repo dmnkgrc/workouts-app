@@ -9,7 +9,7 @@ import { Workouts, WorkoutsArgs } from '../models/workouts.model';
 export class WorkoutsResolver {
   constructor(private workoutsService: WorkoutsService) {}
 
-  @Query((returns) => Workout)
+  @Query((returns) => Workout, { nullable: true })
   async getWorkout(@Args('id', { type: () => Int }) id: number) {
     return this.workoutsService.findOneById(id);
   }

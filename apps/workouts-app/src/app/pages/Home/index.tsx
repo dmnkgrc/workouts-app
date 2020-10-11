@@ -91,7 +91,7 @@ const HomePage = () => {
         flexDirection={['column', 'column', 'row']}
         py={4}
       >
-        <Flex alignItems="center">
+        <Flex alignItems="center" data-test-id="home-title">
           <Heading pr={2} fontSize="2xl">
             All workouts
           </Heading>

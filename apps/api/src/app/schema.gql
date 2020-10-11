@@ -27,7 +27,7 @@ type Workouts {
 }
 
 type Query {
-  getWorkout(id: Int!): Workout!
+  getWorkout(id: Int!): Workout
   getWorkouts(variables: WorkoutsArgs): Workouts!
 }
 

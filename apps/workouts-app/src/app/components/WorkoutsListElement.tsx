@@ -31,7 +31,11 @@ export const WorkoutListElement = ({
   workout: IWorkout;
   onClick: BoxProps['onClick'];
 }) => (
-  <StyledWorkoutListElement as="li" onClick={onClick}>
+  <StyledWorkoutListElement
+    as="li"
+    onClick={onClick}
+    data-test-id="workouts-list-element"
+  >
     <Flex
       justifyContent="center"
       borderTopLeftRadius="md"
@@ -63,7 +67,11 @@ export const WorkoutListElement = ({
       </Text>
     </Flex>
     <Box px={2}>
-      <Text color="brand.500" fontWeight="600">
+      <Text
+        color="brand.500"
+        fontWeight="600"
+        data-test-id="workouts-list-element-name"
+      >
         {workout.name}
       </Text>
       <Text fontSize="sm" fontWeight="500">

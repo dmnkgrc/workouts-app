@@ -24,6 +24,7 @@ export const SelectedFilter = ({
     alignItems="center"
     color="brand.500"
     key={value}
+    data-test-id="selected-filter"
   >
     <Text fontWeight="600" fontSize="sm" textTransform="capitalize">
       {text}

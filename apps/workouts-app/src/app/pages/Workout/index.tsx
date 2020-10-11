@@ -7,6 +7,9 @@ import { ArrowLeft } from 'react-feather';
 
 import { GET_WORKOUT } from '../../queries/workouts';
 import { Loading } from '../../components/Loading';
+import { ImageWithLoading } from '../../components/ImageWithLoading';
+import { format } from 'date-fns';
+import { BackLink } from '../../components/BackLink';
 
 const WorkoutPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -21,20 +24,42 @@ const WorkoutPage = () => {
   if (loading) return <Loading />;
   if (error || !data)
     return (
-      <Alert status="error">
+      <Alert data-test-id="alert-error" status="error">
         There was an error processing your request. Please try again later
       </Alert>
     );
   const workout = data.getWorkout;
+  if (!workout) {
+    return (
+      <Alert data-test-id="alert-error" status="error">
+        Workout not found
+      </Alert>
+    );
+  }
   return (
-    <Box>
+    <Box width="100%" maxW="2xl">
       <Box py={4}>
-        <Flex as={NavLink} {...{ to: '/' }} alignItems="center">
-          <ArrowLeft />
-          <Text>Back to Workouts</Text>
-        </Flex>
+        <BackLink text="Back to Workouts" to="/" />
       </Box>
-      <Heading>{workout.name}</Heading>
+      <Heading data-test-id="workout-page-title">{workout.name}</Heading>
+      <Box py={2}>
+        <ImageWithLoading
+          loaderHeight={64}
+          src={`${workout.image}?q=${workout.id}`}
+          alt={workout.name}
+        />
+      </Box>
+      <Box backgroundColor="white" p={4} borderRadius="md" boxShadow="sm">
+        <Flex justifyContent="space-between">
+          <Text fontWeight="600" textTransform="capitalize">
+            {workout.category}
+          </Text>
+          <Text color="gray.400" fontWeight="xs">
+            {format(new Date(Number(workout.startDate)), 'dd MMM yyyy')}
+          </Text>
+        </Flex>
+        <Text>{workout.description}</Text>
+      </Box>
     </Box>
   );
 };

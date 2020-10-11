@@ -101,7 +101,12 @@ export const Pagination = ({
   const lastPageElement = page * limit;
 
   return (
-    <Flex justifyContent="space-between" alignItems="center" py={4}>
+    <Flex
+      justifyContent="space-between"
+      alignItems="center"
+      py={4}
+      data-test-id="pagination"
+    >
       <Text>
         Showing <b>{firstPageElement}</b> to <b>{lastPageElement}</b> of{' '}
         <b>{total}</b> workouts
@@ -111,6 +116,7 @@ export const Pagination = ({
           if (item === 'previous') {
             return (
               <IconButton
+                data-test-id="pagination-previous"
                 key={item}
                 variantColor="brand"
                 icon={ChevronLeft}
@@ -122,6 +128,7 @@ export const Pagination = ({
             return (
               <IconButton
                 key={item}
+                data-test-id="pagination-next"
                 variantColor="brand"
                 icon={ChevronRight}
                 aria-label={item}
@@ -133,6 +140,7 @@ export const Pagination = ({
           } else if (typeof item === 'number') {
             return (
               <Button
+                data-test-id={`pagination-${item}`}
                 key={item}
                 onClick={() => onChange(item)}
                 borderRadius="full"
